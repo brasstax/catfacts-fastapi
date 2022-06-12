@@ -1,7 +1,10 @@
 from typing import Union
+import logging
 
 from fastapi import FastAPI
 from catfacts_fastapi import utils
+
+logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
 v2 = FastAPI()
