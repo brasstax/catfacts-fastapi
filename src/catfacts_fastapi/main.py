@@ -17,10 +17,11 @@ v2 = FastAPI()
 
 
 async def read_random() -> Dict:
-  s = select(utils.catfacts)
-  query = s.order_by(func.random()).limit(1)
-  results = await database.fetch_one(query=query)
-  return results
+    s = select(utils.catfacts)
+    query = s.order_by(func.random()).limit(1)
+    results = await database.fetch_one(query=query)
+    return results
+
 
 @app.on_event("startup")
 async def startup_event():
@@ -30,9 +31,11 @@ async def startup_event():
         sys.exit(1)
     await database.connect()
 
+
 @app.on_event("shutdown")
 async def database_disconnect():
     await database.disconnect()
+
 
 @app.get("/")
 async def read_root():
@@ -52,13 +55,18 @@ async def read_random_v2_endpoint():
     results = await read_random()
     return results
 
+
 @v2.get("/fact/{fact_id}")
 async def read_fact_by_id(fact_id: int):
     try:
         fact_id = int(fact_id)
     except ValueError:
         raise HTTPException(status_code=400, detail="Not a valid fact ID")
-    return fact_id
+    query = select(utils.catfacts).where(utils.catfacts.c.id == fact_id)
+    results = await database.fetch_one(query=query)
+    if not results:
+        raise HTTPException(status_code=404, detail="Fact ID not found")
+    return results
 
 
 app.mount("/v2", v2)
