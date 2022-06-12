@@ -8,6 +8,8 @@ It amuses me.
 
 # How
 ## Standalone
+### Installing
+`pip install .`
 ### Initialize database
 `init-catfacts`
 ### Dev
