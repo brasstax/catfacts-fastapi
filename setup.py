@@ -16,7 +16,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="catfacts-fastapi",
-    version="20220611.4",
+    version="20220611.5",
     description="Cat facts provided by FastAPI",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -38,9 +38,14 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.7, <4",
-    install_requires=["fastapi", "uvicorn", "gunicorn", "databases"], 
+    install_requires=["fastapi", "uvicorn", "gunicorn", "databases[sqlite]"], 
     extras_require={
         "dev": ["black"],
         "test": ["pytest"],
+    },
+    entry_points = {
+        "console_scripts": [
+            "init-catfacts=catfacts_fastapi.utils:init_catfacts"
+        ],
     },
 )
