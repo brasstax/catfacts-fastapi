@@ -8,6 +8,8 @@ It amuses me.
 
 # How
 ## Standalone
+### Initialize database
+`init-catfacts`
 ### Dev
 `uvicorn catfacts_fastapi.main:app --reload`
 ### Prod
