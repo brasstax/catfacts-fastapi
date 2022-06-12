@@ -9,16 +9,24 @@ logging.basicConfig(level=logging.INFO)
 app = FastAPI()
 v2 = FastAPI()
 
+
+@app.on_event("startup")
+async def startup_event():
+    logging.info("Hello!")
+
+
 @app.get("/")
-def read_root():
+async def read_root():
     return utils.read_random()
+
 
 @v2.get("/")
-def read_random_v2_root():
+async def read_random_v2_root():
     return utils.read_random()
 
+
 @v2.get("/random")
-def read_random_v2_endpoint():
+async def read_random_v2_endpoint():
     return utils.read_random()
 
 

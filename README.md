@@ -7,6 +7,11 @@ Cat facts! From FastAPI!
 It amuses me.
 
 # How
+## Standalone
+### Dev
+`uvicorn catfacts_fastapi.main:app --reload`
+### Prod
+`gunicorn -w 4 -k uvicorn.workers.UvicornWorker catfacts_fastapi.main:app -b 0.0.0.0:8000 --access-logfile -`
 ## Docker
 ## Kubernetes
 
