@@ -1,15 +1,22 @@
 from typing import Union
 
 from fastapi import FastAPI
+from catfacts_fastapi import utils
 
 app = FastAPI()
-
+v2 = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return utils.read_random()
+
+@v2.get("/")
+def read_random_v2_root():
+    return utils.read_random()
+
+@v2.get("/random")
+def read_random_v2_endpoint():
+    return utils.read_random()
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+app.mount("/v2", v2)
