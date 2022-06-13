@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  catfacts-fastapi:
+    image: catfacts/catfacts-fastapi
+    ports:
+      - "8000:8000"
