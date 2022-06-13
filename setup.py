@@ -37,6 +37,7 @@ setup(
     ],
     package_dir={"": "src"},
     packages=find_packages(where="src"),
+    include_package_data=True,
     python_requires=">=3.7, <4",
     install_requires=["fastapi", "uvicorn", "gunicorn", "databases[sqlite]"], 
     extras_require={
