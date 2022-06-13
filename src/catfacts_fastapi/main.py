@@ -36,20 +36,14 @@ async def startup_event():
 async def database_disconnect():
     await database.disconnect()
 
-
-@app.get("/")
-async def read_root():
-    results = await read_random()
-    return results
-
-
-@v2.get("/")
+@v2.get("/all")
 async def read_all_v2_root():
     query = utils.catfacts.select()
     results = await database.fetch_all(query=query)
     return results
 
-
+@app.get("/")
+@v2.get("/")
 @v2.get("/random")
 async def read_random_v2_endpoint():
     results = await read_random()

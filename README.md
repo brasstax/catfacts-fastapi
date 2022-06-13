@@ -17,12 +17,14 @@ It amuses me.
 ### Prod
 `gunicorn -w 4 -k uvicorn.workers.UvicornWorker catfacts_fastapi.main:app -b 0.0.0.0:8000 --access-logfile -`
 ## Docker
+`docker compose up`, then try `curl http://localhost:8000`.
 ## Kubernetes
 
 # Endpoints
 
 * `/`: Retrieves a random fact.
-* `/v2/`: Retrieves all facts.
+* `/v2/`: Retrieves a random fact.
+* `/v2/all`: Retrieves all facts.
 * `/v2/random`: Retrieves a random fact.
 * `/v2/fact/{id}`: Retrieves a fact by ID.
 

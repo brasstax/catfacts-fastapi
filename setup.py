@@ -16,7 +16,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="catfacts-fastapi",
-    version="20220611.7",
+    version="20220612.8",
     description="Cat facts provided by FastAPI",
     long_description=long_description,
     long_description_content_type="text/markdown",
